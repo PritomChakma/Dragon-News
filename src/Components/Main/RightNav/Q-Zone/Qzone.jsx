@@ -14,6 +14,9 @@ const Qzone = () => {
       <div>
         <img src={classRoom} alt="" />
       </div>
+      <div>
+        <img src={playGround} alt="" />
+      </div>
       <div className="my-10">
         <img src={bg} alt="" />
       </div>

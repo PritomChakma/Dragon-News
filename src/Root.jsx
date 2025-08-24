@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Header from "./Components/Header/Header";
 import LeatestNews from "./Components/Leatest/LeatestNews";
 import LeftNav from "./Components/Main/LeftNav/LeftNav";
@@ -18,7 +19,7 @@ function Root() {
       </nav>
       <main className="w-11/12 mx-auto grid grid-cols-12">
         <aside className="col-span-3"><LeftNav></LeftNav></aside>
-        <main className="col-span-6">Main</main>
+        <main className="col-span-6"><Outlet></Outlet></main>
         <aside className="col-span-3"><RightNav></RightNav></aside>
       </main>
       <footer></footer>
