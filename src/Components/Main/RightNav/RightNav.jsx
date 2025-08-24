@@ -1,5 +1,6 @@
 import Github from "../../SocialLogin/GithubLogin/Github";
 import GoogleLogin from "../../SocialLogin/GoogleLogin/GoogleLogin";
+import FindUs from "./FindUs";
 
 
 const RightNav = () => {
@@ -10,6 +11,7 @@ const RightNav = () => {
                 <GoogleLogin></GoogleLogin>
                 <Github></Github>
             </div>
+            <FindUs></FindUs>
         </div>
     );
 };
