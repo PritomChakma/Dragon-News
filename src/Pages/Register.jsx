@@ -1,6 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { useContext } from "react";
+import { AuthContext } from "../Components/Provider/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const handleCreateUser = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(name, photo, email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        navigate("/");
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className=" flex items-center justify-center px-4">
       <div className="card w-full max-w-md shadow-2xl ">
@@ -11,7 +35,7 @@ const Register = () => {
           </h1>
 
           {/* Form */}
-          <form className="space-y-4">
+          <form onSubmit={handleCreateUser} className="space-y-4">
             {/* Name */}
             <div>
               <label className="label">
@@ -19,6 +43,7 @@ const Register = () => {
               </label>
               <input
                 type="text"
+                name="name"
                 placeholder="Enter your name"
                 className="input input-bordered w-full"
                 required
@@ -32,6 +57,7 @@ const Register = () => {
               </label>
               <input
                 type="url"
+                name="photo"
                 placeholder="Enter photo URL"
                 className="input input-bordered w-full"
               />
@@ -44,6 +70,7 @@ const Register = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email"
                 className="input input-bordered w-full"
                 required
@@ -57,6 +84,7 @@ const Register = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="Enter your password"
                 className="input input-bordered w-full"
                 required
