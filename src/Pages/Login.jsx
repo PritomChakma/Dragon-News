@@ -1,6 +1,25 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Components/Provider/AuthProvider";
 
 const Login = () => {
+  const { logInUser } = useContext(AuthContext);
+const navigate = useNavigate()
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    logInUser(email, password)
+      .then((result) => {
+        navigate("/")
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="flex items-center justify-center p-4">
       <div className="card w-full max-w-lg shadow-2xl">
@@ -11,7 +30,7 @@ const Login = () => {
           </h1>
 
           {/* Form */}
-          <form className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-4">
             {/* Email */}
             <div>
               <label className="label">
@@ -19,6 +38,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email"
                 className="input input-bordered w-full"
                 required
@@ -32,6 +52,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="Enter your password"
                 className="input input-bordered w-full"
                 required
