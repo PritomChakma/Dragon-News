@@ -1,9 +1,20 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const GoogleLogin = () => {
+  const { googoleLogin } = useContext(AuthContext);
+
+  const googleLoginUser = () => {
+    googoleLogin();
+  };
+
   return (
     <div className="flex justify-center items-center ">
-      <button className="flex items-center gap-3 w-72 p-3 btn ">
+      <button
+        onClick={googleLoginUser}
+        className="flex items-center gap-3 w-72 p-3 btn "
+      >
         <FcGoogle size={24} />
         <span>Continue with Google</span>
       </button>
